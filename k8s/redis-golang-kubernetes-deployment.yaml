@@ -14,7 +14,7 @@ spec:
         app: redis-golang
     spec:
       containers:
-      - image: 884942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-golang:latest
+      - image: 994942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-golang:latest
         imagePullPolicy: Always
         name: redis-golang
         ports:
