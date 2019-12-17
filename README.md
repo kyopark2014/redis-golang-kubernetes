@@ -14,7 +14,7 @@ $ kubectl create -f k8s/redis-master-deployment.yaml
 $ kubectl create -f k8s/redis-master-service.yaml 
 ```
 
-### change the type from ClusterIP to LoadBalancer in order to easily use 
+### Change the type from ClusterIP to LoadBalancer in order to easily use 
 
 ```c
 $ kubectl edit service/redis-master
@@ -24,7 +24,7 @@ NAME           TYPE           CLUSTER-IP     EXTERNAL-IP                        
 redis-master   LoadBalancer   10.100.22.49   a2a61bdc0208d11eaaabc0a6b8228ff9-2077444820.eu-west-2.elb.amazonaws.com   6379:32502/TCP   28m
 ```
 
-### input these commands using redis-cli 
+### Input these commands using redis-cli 
 
 ```c
 $ redis-cli -h a2a61bdc0208d11eaaabc0a6b8228ff9-2077444820.eu-west-2.elb.amazonaws.com -p 6379
@@ -41,7 +41,7 @@ a2a61bdc0208d11eaaabc0a6b8228ff9-2077444820.eu-west-2.elb.amazonaws.com:6379> lp
 a2a61bdc0208d11eaaabc0a6b8228ff9-2077444820.eu-west-2.elb.amazonaws.com:6379> exit
 ```
 
-### prepare main.go and index.html as bellow
+### Prepare main.go and index.html as bellow
 
 #### main.go
 ```c
@@ -93,7 +93,7 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 </html>
 ```
 
-### run it for checking the operation.
+### Run it for checking the operation.
 ```c
 $ go run main.go
 
@@ -127,29 +127,29 @@ Content-Type: text/html; charset=utf-8
 </html>
 ```
 
-### make docker image
+### Make docker image
 ```c
 $ docker build -t redis-golang-kubernetes:v1 .
 
 $ docker run -d -p 8080:8080 redis-golang-kubernetes:v1
 ```
 
-### tagging
+### Tagging
 ```c
 $ docker tag redis-golang-kubernetes:v1 884942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-golang
 ```
 
-### create repository if required
+### Create repository if required
 ```c
 $ aws ecr create-repository --region eu-west-2 --repository-name repository-redis-golang
 ```
 
-### push the image to ECR
+### Push the image to ECR
 ```c
 $ docker push 994942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-golang
 ```
 
-### deploy and run
+### Deploy and run
 ```c
 $ kubectl create -f redis-golang-kubernetes-deployment.yaml
 $ kubectl create -f redis-golang-kubernetes-server-service.yaml 
@@ -164,7 +164,7 @@ redis-master                    LoadBalancer   10.100.22.49     a2a61bdc0208d11e
 ```
 
 
-### make sure the opration using the url.
+### Make sure the opration using the url.
 ```c
 $ curl -i a1cf9cffe20cf11ea9c1206f47235bc6-737905859.eu-west-2.elb.amazonaws.com:8080
 ```
