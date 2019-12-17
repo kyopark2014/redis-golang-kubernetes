@@ -1,0 +1,22 @@
+apiVersion: apps/v1beta2 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: redis-golang
+spec:
+  selector:
+    matchLabels:
+      app: redis-golang
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: redis-golang
+    spec:
+      containers:
+      - image: 884942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-golang:latest
+        imagePullPolicy: Always
+        name: redis-golang
+        ports:
+        - containerPort: 8080
+          name: redis-golang
