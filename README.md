@@ -10,7 +10,7 @@ $ kubectl create -f k8s/redis-master-deployment.yaml
 
 $ kubectl create -f k8s/redis-master-service.yaml 
 
-### change the type from ClusterIP to LoadBalancer in order to explaine docker and local build
+### change the type from ClusterIP to LoadBalancer in order to explain docker and local build
 $ kubectl edit service/redis-master
 
 ```c
