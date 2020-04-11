@@ -153,7 +153,7 @@ $ docker push 994942771862.dkr.ecr.eu-west-2.amazonaws.com/repository-redis-gola
 ```c
 $ kubectl create -f redis-golang-kubernetes-deployment.yaml
 $ kubectl create -f redis-golang-kubernetes-server-service.yaml 
-```c
+```
 
 ### check the url in order to show the operation of radis using golang.
 ```c
@@ -197,6 +197,7 @@ Content-Type: text/html; charset=utf-8
 ```
 
 ## Reference
+
 https://kubernetes.io/ko/docs/tutorials/stateless-application/guestbook/
 
 https://www.youtube.com/watch?v=Hbt56gFj998&feature=youtu.be
