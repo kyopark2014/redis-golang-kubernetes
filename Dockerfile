@@ -1,18 +1,15 @@
-FROM golang:1.13.0
-WORKDIR /usr/src/app
-RUN apt-get update && apt-get install -y unzip
-RUN go get -u google.golang.org/grpc
-RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v3.11.1/protoc-3.11.1-linux-x86_64.zip
-RUN unzip protoc-3.11.1-linux-x86_64.zip
-RUN rm protoc-3.11.1-linux-x86_64.zip
-RUN mv /usr/src/app/bin/protoc /usr/bin/
-RUN cp -R include/* /usr/local/include/
-RUN chmod 777 /usr/bin/protoc
-RUN go get github.com/gin-gonic/gin
-RUN go get github.com/go-redis/redis
-RUN go get github.com/gorilla/mux
-RUN go get -u github.com/golang/protobuf/protoc-gen-go
+###################
+##  build stage  ##
+###################
+FROM golang:1.13.0-alpine as builder
+WORKDIR /redis-golang-kubernetes
 COPY . .
-EXPOSE 8080
-CMD ["go","run", "main.go"]
+RUN go build -v -o redis-golang-kubernetes
 
+##################
+##  exec stage  ##
+##################
+FROM alpine:3.10.2
+WORKDIR /app
+COPY --from=builder /redis-golang-kubernetes /app/
+CMD ["./redis-golang-kubernetes"]
