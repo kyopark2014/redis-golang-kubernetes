@@ -216,6 +216,12 @@ Content-Type: text/html; charset=utf-8
 </html>
 ```
 
+## Delete Resouces 
+
+```java
+eksctl delete cluster --region=ap-northeast-2 --name=eks-ksdyb
+```
+
 ## Reference
 
 https://kubernetes.io/ko/docs/tutorials/stateless-application/guestbook/
