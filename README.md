@@ -14,7 +14,13 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
 
+## SSH Key Gnenration
 
+In order to access node, generate ssh key as bellow. Then copy into "./ssh"
+
+```java
+ssh-keygen
+```
 
 ### Create EKS cluster
 ```c
