@@ -1,6 +1,20 @@
 # redis-golang-kubernetes
 
-This project shows how to create and use redis based on golang in kubernetes.
+This repository shows how to create and use redis based on golang in kubernetes.
+
+## Install eksctl
+
+For linux, use these commends as [[Installing or updating eksctl]](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
+
+```java
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+sudo mv /tmp/eksctl /usr/local/bin
+
+eksctl version
+```
+
+
 
 ### Create EKS cluster
 ```c
