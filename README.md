@@ -2,7 +2,8 @@
 
 This repository shows how to create and use redis based on golang in kubernetes.
 
-## Install eksctl
+## Preperation
+### Install eksctl
 
 For linux, use these commends as [[Installing or updating eksctl]](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html)
 
@@ -14,7 +15,7 @@ sudo mv /tmp/eksctl /usr/local/bin
 eksctl version
 ```
 
-## SSH Key Gnenration
+### SSH Key Gnenration
 
 In order to access node, generate ssh key as bellow. Then copy into "./ssh"
 
@@ -22,16 +23,30 @@ In order to access node, generate ssh key as bellow. Then copy into "./ssh"
 ssh-keygen
 ```
 
+### Kubectl
+
+To install kubectl, use these commends as [[Install and Set Up kubectl on Linux]](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/)
+
+```java
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
+kubectl cluster-info
+```
+
+## Main
+
 ### Create EKS cluster
 ```c
-$ eksctl create cluster -f k8s/cluster-redis-golang-kubernetes.yaml
+eksctl create cluster -f k8s/cluster-redis-golang-kubernetes.yaml
 ```
 
 ### Deploy Redis server
 ```c
-$ kubectl create -f k8s/redis-master-deployment.yaml
+kubectl create -f k8s/redis-master-deployment.yaml
 
-$ kubectl create -f k8s/redis-master-service.yaml 
+kubectl create -f k8s/redis-master-service.yaml 
 ```
 
 ### Change the type from ClusterIP to LoadBalancer in order to easily use 
