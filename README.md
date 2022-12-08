@@ -35,6 +35,12 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 kubectl cluster-info
 ```
 
+If connection is failed, use this
+
+```java
+aws eks --region ap-northeast-2 update-kubeconfig --name eks-ksdyb
+```
+
 ## Main
 
 ### Create EKS cluster
